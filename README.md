@@ -39,3 +39,32 @@ Response:
     }
 }
 ```
+
+2. Add an analytic to a property
+
+Request:
+
+`POST /api/property/:id/analytic`
+```
+{
+	"analytic_type_id": 1,
+    "value": 100
+}
+```
+
+Response:
+```
+{
+    "success": true,
+    "message": "Property analytic created.",
+    "data": {
+        "analytic_type_id": 1,
+        "value": 100,
+        "property_id": 101,
+        "updated_at": "2020-05-03T04:55:46.000000Z",
+        "created_at": "2020-05-03T04:55:46.000000Z",
+        "id": 219
+    }
+}
+```
+

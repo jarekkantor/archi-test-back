@@ -1,6 +1,6 @@
 <?php
 
-use App\PropertyAnalytics;
+use App\PropertyAnalytic;
 use Illuminate\Database\Seeder;
 
 class PropertyAnalyticsSeeder extends Seeder
@@ -237,11 +237,11 @@ class PropertyAnalyticsSeeder extends Seeder
      */
     public function run()
     {
-        PropertyAnalytics::unguard();
+        PropertyAnalytic::unguard();
         foreach ($this->data as $row) {
             $data = array_combine(['property_id', 'analytic_type_id', 'value'], $row);
-            PropertyAnalytics::create($data);
+            PropertyAnalytic::create($data);
         }
-        PropertyAnalytics::reguard();
+        PropertyAnalytic::reguard();
     }
 }

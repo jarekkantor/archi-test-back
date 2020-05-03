@@ -30,7 +30,7 @@ class PropertyControllerTest extends TestCase
     }
 
     /**
-     * POST request should return validation error when country is missing
+     * POST request should return created property when input is valid
      *
      * @test
      */
@@ -45,5 +45,7 @@ class PropertyControllerTest extends TestCase
             'message' => 'Property created.',
             'data'    => $data
         ]);
+
+        $this->assertDatabaseHas('properties', $data);
     }
 }

@@ -17,11 +17,11 @@ class PropertyController extends Controller
         } catch (QueryException $e) {
             Log::notice($e->getMessage(), $request->input());
 
-            return $this->resolve('Failed to create property. Please check input data.');
+            return $this->reject('Failed to create property. Please check input data.');
         } catch (Exception $e) {
             Log::critical($e->getMessage(), $request->input());
 
-            return $this->resolve('Failed to create property.');
+            return $this->reject('Failed to create property.');
         }
 
         return $this->resolve('Property created.', $model);
