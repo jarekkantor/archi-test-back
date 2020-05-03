@@ -77,7 +77,7 @@ Request:
 Response:
 ```
 {
-"success": true,
+    "success": true,
     "message": "List of property analytics.",
     "data": [
         {
@@ -100,3 +100,46 @@ Response:
 }
 ```
 
+4. Summary of all property analytics for given area
+where :area is suburb, state or country
+
+Request:
+
+`GET /summary/:area/:name`
+
+Response:
+```
+{
+    "success": true,
+    "message": "Property analytics summary for suburb Ryde.",
+    "data": [
+        {
+            "name": "max_Bld_Height_m",
+            "units": "m",
+            "min": "10.0",
+            "max": "34.0",
+            "median": "34.0",
+            "percent_with_value": 50,
+            "percent_without_value": 50
+        },
+        {
+            "name": "min_lot_size_m2",
+            "units": "m2",
+            "min": "745",
+            "max": "939",
+            "median": "749",
+            "percent_with_value": 30,
+            "percent_without_value": 70
+        },
+        {
+            "name": "fsr",
+            "units": ":1",
+            "min": "2.09",
+            "max": "3.41",
+            "median": "2.75",
+            "percent_with_value": 20,
+            "percent_without_value": 80
+        }
+    ]
+}
+```

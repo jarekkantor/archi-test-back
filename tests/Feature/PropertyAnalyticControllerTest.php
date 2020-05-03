@@ -153,10 +153,9 @@ class PropertyAnalyticControllerTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertJson([
-                                  'success' => true,
-                                  'message' => 'List of property analytics.',
-                                  'data'    => [$data]
-                              ]);
-
+            'success' => true,
+            'message' => 'List of property analytics.',
+            'data'    => [$data]
+        ]);
     }
 }

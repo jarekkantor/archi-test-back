@@ -19,7 +19,7 @@ class PropertyAnalyticController extends Controller
      */
     public function index(Property $property)
     {
-        return $this->resolve("List of property analytics.", $property->analytics);
+        return $this->resolve('List of property analytics.', $property->analytics);
     }
 
     /**
