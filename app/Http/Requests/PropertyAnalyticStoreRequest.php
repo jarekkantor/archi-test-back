@@ -12,7 +12,7 @@ class PropertyAnalyticStoreRequest extends Request
     public function rules()
     {
         return [
-            'analytic_type_id' => 'required|exists:analytic_types,id',
+            'analytic_type_id' => 'required|exists:App\AnalyticType,id',
             'value'            => 'required',
         ];
     }

@@ -20,6 +20,8 @@ class CreatePropertyAnalyticsTable extends Migration
             $table->unsignedBigInteger('analytic_type_id');
             $table->text('value');
 
+            $table->unique(['property_id', 'analytic_type_id']);
+
             $table->foreign('property_id')
                   ->references('id')
                   ->on('properties');

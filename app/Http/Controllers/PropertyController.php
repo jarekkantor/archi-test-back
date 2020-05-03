@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Log;
 
 class PropertyController extends Controller
 {
+    /**
+     * Create a property
+     *
+     * @param PropertyStoreRequest $request
+     * @param Property             $property
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(PropertyStoreRequest $request, Property $property)
     {
         try {

@@ -40,7 +40,7 @@ Response:
 }
 ```
 
-2. Add an analytic to a property
+2. Add or update an analytic to a property
 
 Request:
 

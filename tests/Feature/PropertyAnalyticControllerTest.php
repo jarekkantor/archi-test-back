@@ -94,4 +94,29 @@ class PropertyAnalyticControllerTest extends TestCase
 
         $this->assertDatabaseHas('property_analytics', $data);
     }
+
+    /**
+     * POST request should return update property analytic when input is valid and property analytic exists
+     *
+     * @test
+     */
+    public function shouldReturnUpdatedPropertyAnalytic()
+    {
+        $property = factory(Property::class)->create();
+        $type = factory(AnalyticType::class)->create();
+
+        $property->analytics()->create(['analytic_type_id' => $type->id, 'value' => 100]);
+
+        $data = ['analytic_type_id' => $type->id, 'value' => 200];
+        $response = $this->post("/api/property/{$property->id}/analytic", $data);
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'success' => true,
+            'message' => 'Property analytic updated.',
+            'data'    => $data
+        ]);
+
+        $this->assertDatabaseHas('property_analytics', $data);
+    }
 }

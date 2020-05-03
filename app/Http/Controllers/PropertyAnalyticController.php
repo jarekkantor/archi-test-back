@@ -10,10 +10,25 @@ use Illuminate\Support\Facades\Log;
 
 class PropertyAnalyticController extends Controller
 {
+    /**
+     * Add or update an analytic for given property
+     *
+     * @param Property                     $property
+     * @param PropertyAnalyticStoreRequest $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Property $property, PropertyAnalyticStoreRequest $request)
     {
         try {
-            $model = $property->analytics()->create($request->input());
+            $model = $property->analytics()
+                              ->firstWhere('analytic_type_id', $request->input('analytic_type_id'));
+            $action = $model ? 'update' : 'create';
+            if ($action === 'update') {
+                $model->update($request->input());
+            } else {
+                $model = $property->analytics()->create($request->input());
+            }
         } catch (QueryException $e) {
             Log::notice($e->getMessage(), $request->input());
 
@@ -21,9 +36,9 @@ class PropertyAnalyticController extends Controller
         } catch (Exception $e) {
             Log::critical($e->getMessage(), $request->input());
 
-            return $this->reject('Failed to create analytic.');
+            return $this->reject('Failed to create property analytic.');
         }
 
-        return $this->resolve('Property analytic created.', $model);
+        return $this->resolve("Property analytic {$action}d.", $model);
     }
 }
