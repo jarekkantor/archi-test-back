@@ -96,7 +96,7 @@ class PropertyAnalyticControllerTest extends TestCase
     }
 
     /**
-     * POST request should return update property analytic when input is valid and property analytic exists
+     * POST request should return updated property analytic when input is valid and property analytic exists
      *
      * @test
      */
@@ -118,5 +118,45 @@ class PropertyAnalyticControllerTest extends TestCase
         ]);
 
         $this->assertDatabaseHas('property_analytics', $data);
+    }
+
+    /**
+     * GET request should return 404 error when property id is invalid
+     *
+     * @test
+     */
+    public function getShouldReturn404ErrorWhenPropertyIdIsInvalid()
+    {
+        $response = $this->get('/api/property/1/analytic');
+
+        $response->assertStatus(404);
+        $response->assertJson([
+            'success' => false,
+            'message' => 'Not found.',
+        ]);
+    }
+
+    /**
+     * GET request should return list of property analytics
+     *
+     * @test
+     */
+    public function getShouldReturnUpdatedPropertyAnalytic()
+    {
+        $property = factory(Property::class)->create();
+        $type = factory(AnalyticType::class)->create();
+
+        $data = ['analytic_type_id' => $type->id, 'value' => 200];
+        $property->analytics()->create($data);
+
+        $response = $this->get("/api/property/{$property->id}/analytic");
+
+        $response->assertStatus(200);
+        $response->assertJson([
+                                  'success' => true,
+                                  'message' => 'List of property analytics.',
+                                  'data'    => [$data]
+                              ]);
+
     }
 }

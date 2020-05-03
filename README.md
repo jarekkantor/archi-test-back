@@ -68,3 +68,35 @@ Response:
 }
 ```
 
+3. List of property analytics for a property
+
+Request:
+
+`GET /api/property/:id/analytic`
+
+Response:
+```
+{
+"success": true,
+    "message": "List of property analytics.",
+    "data": [
+        {
+            "id": 222,
+            "created_at": "2020-05-03T05:30:01.000000Z",
+            "updated_at": "2020-05-03T05:30:01.000000Z",
+            "property_id": 100,
+            "analytic_type_id": 1,
+            "value": "2500"
+        },
+        {
+            "id": 218,
+            "created_at": "2020-05-03T05:21:57.000000Z",
+            "updated_at": "2020-05-03T05:21:57.000000Z",
+            "property_id": 100,
+            "analytic_type_id": 2,
+            "value": "100"
+        }
+    ]
+}
+```
+

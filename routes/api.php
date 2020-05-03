@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/property', 'PropertyController@store');
 Route::post('/property/{property}/analytic', 'PropertyAnalyticController@store');
+Route::get('/property/{property}/analytic', 'PropertyAnalyticController@index');
