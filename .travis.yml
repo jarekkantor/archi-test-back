@@ -1,0 +1,35 @@
+language: php
+php:
+  - 7.3
+dist: trusty
+
+cache:
+  directories:
+    - vendor
+
+before_install:
+  - composer self-update
+
+install:
+  - composer install --no-interaction --prefer-dist
+
+before_script:
+  # Disable XDebug
+  - phpenv config-rm xdebug.ini
+
+script:
+  - vendor/bin/phpunit
+
+after_success:
+  - zip -q -r --exclude=*.git* --exclude=*laravel.log
+
+deploy:
+  - provider: elasticbeanstalk
+    skip_cleanup: true
+    zip_file: 'build.zip'
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    region: ap-southeast-2
+    app: archi
+    env: archi
+    bucket_name: eb-archi-deployment
