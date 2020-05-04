@@ -5,17 +5,23 @@
 composer install
 ```
 
-### 2. Create tables and seed them
+### 2. Run tests
+```
+phpunit
+```
+
+### 3. Create tables and seed them
 ```
 php artisan migrate --seed
 ```
+
 ### API Endpoints
 
 1. Create a property
 
 Request:
 
-`POST /api/property`
+`POST /api/v1/property`
 ```
 {
     "suburb": "Kellyville",
@@ -44,7 +50,7 @@ Response:
 
 Request:
 
-`POST /api/property/:id/analytic`
+`POST /api/v1/property/:id/analytic`
 ```
 {
 	"analytic_type_id": 1,
@@ -72,7 +78,7 @@ Response:
 
 Request:
 
-`GET /api/property/:id/analytic`
+`GET /api/v1/property/:id/analytic`
 
 Response:
 ```
@@ -105,7 +111,7 @@ where :area is suburb, state or country
 
 Request:
 
-`GET /summary/:area/:name`
+`GET /api/v1/summary/:area/:name`
 
 Response:
 ```
